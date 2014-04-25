@@ -1,0 +1,15 @@
+<VirtualHost *:9001>
+
+    WSGIDaemonProcess TRX user=www-data group=www-data processes=1 threads=5
+    WSGIScriptAlias / /var/www/TRX/TRX.wsgi
+
+    <Directory /var/www/TRX>
+        WSGIProcessGroup TRX
+        WSGIApplicationGroup %{GLOBAL}
+
+        Order deny,allow
+        Allow from all
+    </Directory>
+    ErrorLog /var/log/apache2/TRX.log
+
+</VirtualHost>
